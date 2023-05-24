@@ -8,7 +8,7 @@ part 'api_service.g.dart';
 
 @RestApi(
     baseUrl:
-        "${ConstantUtils.apiUrl}/current.json?key=${ConstantUtils.apiKey}&")
+        "${ConstantUtils.apiUrl}/forecast.json?key=${ConstantUtils.apiKey}&days=${ConstantUtils.forecastDays}")
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 

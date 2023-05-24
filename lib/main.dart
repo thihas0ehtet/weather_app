@@ -4,13 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:weatherapp/bloc/weather/bloc.dart';
 import 'package:weatherapp/bloc/simple_bloc_observer.dart';
 import 'package:weatherapp/services/api_service.dart';
-import 'package:weatherapp/services/db_services.dart';
 import 'package:weatherapp/utils/constants.dart';
 import 'package:weatherapp/widgets/bottom_bar.dart';
 
 Future<void> main() async {
   Bloc.observer = SimpleBlocObserver();
-  await DatabaseService.initDB();
+  // await DatabaseService.initDB();
   runApp(const MyApp());
 }
 

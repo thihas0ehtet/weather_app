@@ -9,10 +9,12 @@ part of 'weather_model.dart';
 WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) => WeatherModel(
       CityModel.fromJson(json['location'] as Map<String, dynamic>),
       StateModel.fromJson(json['current'] as Map<String, dynamic>),
+      ForecastModel.fromJson(json['forecast'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
     <String, dynamic>{
       'location': instance.city,
       'current': instance.weatherStates,
+      'forecast': instance.forecast,
     };

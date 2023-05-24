@@ -13,7 +13,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
       try {
         final response = await apiService.getWeather(event.city);
-        emit(WeatherLoaded(weatherModel: response));
+        emit(WeatherLoaded(weatherModel: response, searchCity: event.city));
       } on SocketException {
         emit(WeatherError());
       } on Exception {

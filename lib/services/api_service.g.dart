@@ -14,7 +14,7 @@ class _ApiService implements ApiService {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'https://api.weatherapi.com/v1/current.json?key=d7665775f8164d2896e102617231905&';
+        'https://api.weatherapi.com/v1/forecast.json?key=d7665775f8164d2896e102617231905&days=3';
   }
 
   final Dio _dio;

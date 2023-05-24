@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:weatherapp/model/forecast_model.dart';
 import 'package:weatherapp/model/models.dart';
 
 part 'weather_model.g.dart';
@@ -13,8 +14,10 @@ class WeatherModel extends Equatable {
   final CityModel city;
   @JsonKey(name: "current")
   final StateModel weatherStates;
+  @JsonKey(name: "forecast")
+  final ForecastModel forecast;
 
-  const WeatherModel(this.city, this.weatherStates);
+  const WeatherModel(this.city, this.weatherStates, this.forecast);
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) =>
       _$WeatherModelFromJson(json);
