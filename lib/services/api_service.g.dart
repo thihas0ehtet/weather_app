@@ -26,7 +26,7 @@ class _ApiService implements ApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<WeatherModel>(Options(
       method: 'GET',
@@ -49,7 +49,7 @@ class _ApiService implements ApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'query': keyword};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<List<dynamic>>(_setStreamType<List<CityModel>>(Options(
       method: 'GET',

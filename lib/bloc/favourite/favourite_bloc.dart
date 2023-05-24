@@ -5,10 +5,10 @@ import 'package:weatherapp/controllers/favourite_controller.dart';
 import './bloc.dart';
 
 class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
-  final FavouriteController favController;
-
-  FavouriteBloc({required this.favController}) : super(FavouriteEmpty()) {
+  FavouriteBloc() : super(FavouriteEmpty()) {
     on<FetchFavourite>((event, emit) async {
+      final FavouriteController favController = FavouriteController();
+
       emit(FavouriteLoading());
 
       try {

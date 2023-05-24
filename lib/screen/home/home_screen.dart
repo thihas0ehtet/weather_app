@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weatherapp/bloc/weather/bloc.dart';
+import 'package:weatherapp/controllers/favourite_controller.dart';
+import 'package:weatherapp/model/favourite_model.dart';
 import 'package:weatherapp/screen/home/forecast_view.dart';
 import 'package:weatherapp/screen/home/search.dart';
-import 'package:weatherapp/screen/noti_screen.dart';
+import 'package:weatherapp/screen/noti/noti_screen.dart';
 import 'package:weatherapp/utils/constants.dart';
 import 'package:weatherapp/utils/utils.dart';
 
@@ -14,10 +16,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weatherBloc = BlocProvider.of<WeatherBloc>(context);
-
-    handleSaveFavourite(WeatherState state) {
-      // print(state.weatherModel.city.name);
-    }
 
     return SafeArea(
       child: Scaffold(
@@ -40,9 +38,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: Container(
-              // padding: const EdgeInsets.all(20),
-              child: BlocBuilder<WeatherBloc, WeatherState>(
+          body: BlocBuilder<WeatherBloc, WeatherState>(
             builder: (context, state) {
               if (state is WeatherEmpty) {
                 weatherBloc.add(const FetchWeather(city: "Yangon"));
@@ -165,7 +161,48 @@ class HomeScreen extends StatelessWidget {
                               width: 15,
                             ),
                             ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final FavouriteController favController =
+                                      FavouriteController();
+
+                                  FavouriteModel favourite = FavouriteModel(
+                                    name: state.weatherModel.city.name,
+                                    region: state.weatherModel.city.region,
+                                    country: state.weatherModel.city.country,
+                                    lastUpdated: state
+                                        .weatherModel.weatherStates.lastUpdated,
+                                    tempC:
+                                        state.weatherModel.weatherStates.tempC,
+                                    windMph: state
+                                        .weatherModel.weatherStates.windMph,
+                                    precipIn: state
+                                        .weatherModel.weatherStates.precipIn,
+                                    pressureIn: state
+                                        .weatherModel.weatherStates.pressureIn,
+                                    tempF:
+                                        state.weatherModel.weatherStates.tempF,
+                                    condition: state.weatherModel.weatherStates
+                                        .condition['text'],
+                                    conditionIconUrl: state.weatherModel
+                                        .weatherStates.condition['icon'],
+                                    forecastList:
+                                        state.weatherModel.forecast.forecastList
+                                            .map((e) => {
+                                                  "date": e['date'],
+                                                  "condition": e['day']
+                                                      ['condition']['text'],
+                                                  "avgtemp_c": e['day']
+                                                      ['avgtemp_c'],
+                                                  "avgtemp_f": e['day']
+                                                      ['avgtemp_f'],
+                                                })
+                                            .toList(),
+                                  );
+
+                                  await favController.handleAction(
+                                      ConstantUtils.postMethod,
+                                      favourite: favourite);
+                                },
                                 icon: const Icon(Icons.favorite),
                                 label: const Text("Save as favourite"))
                           ],
@@ -194,7 +231,7 @@ class HomeScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             },
-          ))),
+          )),
     );
   }
 }

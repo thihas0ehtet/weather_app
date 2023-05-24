@@ -1,18 +1,25 @@
-class FavouriteModel {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'favourite_model.g.dart';
+
+@JsonSerializable()
+class FavouriteModel extends Equatable {
   final int? id;
   final String name;
   final String region;
   final String country;
   final String lastUpdated;
-  final String tempC;
-  final String windMph;
-  final String precipIn;
-  final String pressureIn;
-  final String tempF;
+  final double tempC;
+  final double windMph;
+  final double precipIn;
+  final double pressureIn;
+  final double tempF;
   final String condition;
   final String conditionIconUrl;
+  final List<Map<String, dynamic>> forecastList;
 
-  FavouriteModel({
+  const FavouriteModel({
     this.id,
     required this.name,
     required this.region,
@@ -25,34 +32,27 @@ class FavouriteModel {
     required this.tempF,
     required this.condition,
     required this.conditionIconUrl,
+    required this.forecastList,
   });
 
-  factory FavouriteModel.fromJson(dynamic data) => FavouriteModel(
-      id: data['id'],
-      name: data['name'],
-      region: data['region'],
-      country: data['country'],
-      lastUpdated: data['lastUpdated'],
-      tempC: data['tempC'],
-      windMph: data['windMph'],
-      precipIn: data['precipIn'],
-      pressureIn: data['pressureIn'],
-      tempF: data['tempF'],
-      condition: data['condition'],
-      conditionIconUrl: data['conditionIconUrl']);
+  factory FavouriteModel.fromJson(Map<String, dynamic> json) =>
+      _$FavouriteModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "region": region,
-        "country": country,
-        "lastUpdated": lastUpdated,
-        "tempC": tempC,
-        "windMph": windMph,
-        "precipIn": precipIn,
-        "pressureIn": pressureIn,
-        "tempF": tempF,
-        "condition": condition,
-        "conditionIconUrl": conditionIconUrl,
-      };
+  Map<String, dynamic> toJson() => _$FavouriteModelToJson(this);
+
+  @override
+  List<Object> get props => [
+        name,
+        region,
+        country,
+        lastUpdated,
+        tempC,
+        windMph,
+        precipIn,
+        pressureIn,
+        tempF,
+        condition,
+        conditionIconUrl,
+        forecastList
+      ];
 }

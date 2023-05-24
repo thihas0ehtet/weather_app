@@ -2,10 +2,11 @@ import 'package:sqflite/sqflite.dart';
 
 abstract class Tables {
   static String fav = "fav";
+  static String noti = "noti";
 }
 
 class DatabaseService {
-  static const int _version = 2;
+  static const int _version = 1;
   static const String _database = "Weather.db";
 
   static Future<Database> initDB() async {
@@ -30,13 +31,24 @@ class DatabaseService {
         region TEXT,
         country TEXT,
         lastUpdated TEXT,
-        tempC TEXT,
-        windMph TEXT,
-        precipIn TEXT,
-        pressureIn TEXT,
-        tempF TEXT,
+        tempC REAL,
+        windMph REAL,
+        precipIn REAL,
+        pressureIn REAL,
+        tempF REAL,
         condition TEXT,
         conditionIconUrl TEXT,
+         forecastList TEXT,
+        $createdAt
+      )
+    """);
+
+    await database.execute("""
+      CREATE TABLE ${Tables.noti} (
+        $id ,
+        title TEXT,
+        body TEXT,
+        isRead BOOLEAN,
         $createdAt
       )
     """);

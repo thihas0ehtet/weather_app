@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherapp/screen/fav_screen.dart';
+import 'package:weatherapp/screen/favourite/favourite_screen.dart';
 import 'package:weatherapp/screen/home/home_screen.dart';
 import 'package:weatherapp/utils/constants.dart';
 
@@ -22,7 +22,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     final pages = <Widget>[
       const HomeScreen(),
-      const FavScreen(),
+      const FavouriteScreen(),
     ];
     final bottomNavBarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(
