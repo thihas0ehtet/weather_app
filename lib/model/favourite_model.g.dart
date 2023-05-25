@@ -20,9 +20,8 @@ FavouriteModel _$FavouriteModelFromJson(Map<String, dynamic> json) =>
       tempF: (json['tempF'] as num).toDouble(),
       condition: json['condition'] as String,
       conditionIconUrl: json['conditionIconUrl'] as String,
-      forecastList: (json['forecastList'] as List<dynamic>)
-          .map((e) => e as Map<String, dynamic>)
-          .toList(),
+      forecastList: List<Map<String, dynamic>>.from(
+          jsonDecode(json["forecastList"]).map((x) => x)).toList(),
     );
 
 Map<String, dynamic> _$FavouriteModelToJson(FavouriteModel instance) =>
@@ -39,5 +38,5 @@ Map<String, dynamic> _$FavouriteModelToJson(FavouriteModel instance) =>
       'tempF': instance.tempF,
       'condition': instance.condition,
       'conditionIconUrl': instance.conditionIconUrl,
-      'forecastList': instance.forecastList,
+      'forecastList': jsonEncode(instance.forecastList),
     };

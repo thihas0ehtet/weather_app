@@ -38,7 +38,7 @@ class DatabaseService {
         tempF REAL,
         condition TEXT,
         conditionIconUrl TEXT,
-         forecastList TEXT,
+        forecastList TEXT,
         $createdAt
       )
     """);
