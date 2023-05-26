@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'favourite_model.g.dart';
+part 'favorite_model.g.dart';
 
 @JsonSerializable()
-class FavouriteModel extends Equatable {
+class FavoriteModel extends Equatable {
   final int? id;
   final String name;
   final String region;
@@ -21,7 +21,7 @@ class FavouriteModel extends Equatable {
   final String conditionIconUrl;
   final List<Map<String, dynamic>> forecastList;
 
-  const FavouriteModel({
+  const FavoriteModel({
     this.id,
     required this.name,
     required this.region,
@@ -37,10 +37,10 @@ class FavouriteModel extends Equatable {
     required this.forecastList,
   });
 
-  factory FavouriteModel.fromJson(Map<String, dynamic> json) =>
-      _$FavouriteModelFromJson(json);
+  factory FavoriteModel.fromJson(Map<String, dynamic> json) =>
+      _$FavoriteModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FavouriteModelToJson(this);
+  Map<String, dynamic> toJson() => _$FavoriteModelToJson(this);
 
   @override
   List<Object> get props => [

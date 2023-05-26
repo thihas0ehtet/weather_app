@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:weatherapp/utils/utils.dart';
 import 'package:weatherapp/widgets/custom_image.dart';
 
-class ForecastView extends StatelessWidget {
+class FavForecastView extends StatelessWidget {
   final List forecastList;
-  const ForecastView({Key? key, required this.forecastList}) : super(key: key);
+  const FavForecastView({Key? key, required this.forecastList})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,27 +47,27 @@ class ViewCard extends StatelessWidget {
               height: 3,
             ),
             CustomImage(
-              imageUrl: forecast['day']['condition']['icon'],
+              imageUrl: forecast['conditionIcon'],
             ),
             const SizedBox(
               height: 3,
             ),
             Text(
-              forecast['day']['condition']['text'] ?? "",
+              forecast['condition'] ?? "",
               style: const TextStyle(fontSize: 13),
             ),
             const SizedBox(
               height: 3,
             ),
             Text(
-              "${forecast['day']['avgtemp_c'].toString()} °c (avg)",
+              "${forecast['avgtemp_c'].toString()} °c (avg)",
               style: const TextStyle(fontSize: 13),
             ),
             const SizedBox(
               height: 3,
             ),
             Text(
-              "${forecast['day']['avgtemp_f'].toString()} °f (avg)",
+              "${forecast['avgtemp_f'].toString()} °f (avg)",
               style: const TextStyle(fontSize: 13),
             ),
           ],

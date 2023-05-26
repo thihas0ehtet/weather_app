@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:weatherapp/bloc/favourite/bloc.dart';
+import 'package:weatherapp/bloc/favorite/favorite_bloc.dart';
 import 'package:weatherapp/bloc/weather/bloc.dart';
 import 'package:weatherapp/bloc/simple_bloc_observer.dart';
 import 'package:weatherapp/services/api_service.dart';
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
                 BlocProvider<WeatherBloc>(
                   create: (context) => WeatherBloc(apiService: apiService),
                 ),
-                BlocProvider<FavouriteBloc>(
-                  create: (context) => FavouriteBloc(),
+                BlocProvider<FavoriteBloc>(
+                  create: (context) => FavoriteBloc(),
                 ),
               ],
               child: MaterialApp(

@@ -1,47 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weatherapp/bloc/favourite/bloc.dart';
-import 'package:weatherapp/model/favourite_model.dart';
+import 'package:weatherapp/bloc/favorite/bloc.dart';
+import 'package:weatherapp/controllers/favorite_controller.dart';
+import 'package:weatherapp/model/favorite_model.dart';
+import 'package:weatherapp/screen/favorite/detail.dart';
+import 'package:weatherapp/utils/utils.dart';
 
-class FavouriteScreen extends StatelessWidget {
-  const FavouriteScreen({super.key});
+class FavoriteScreen extends StatelessWidget {
+  const FavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final favBloc = BlocProvider.of<FavouriteBloc>(context);
+    final favBloc = BlocProvider.of<FavoriteBloc>(context);
+    final FavoriteController favController = FavoriteController();
+
     return Scaffold(
         appBar: AppBar(
             leading: const Icon(Icons.favorite),
-            title: const Text("Favourite")),
-        body: BlocBuilder<FavouriteBloc, FavouriteState>(
+            title: const Text("Favorites")),
+        body: BlocBuilder<FavoriteBloc, FavoriteState>(
           builder: (context, state) {
-            if (state is FavouriteEmpty) {
+            if (state is FavoriteEmpty) {
               favBloc.add(const FetchFavourite());
             }
 
-            if (state is FavouriteLoading) {
+            if (state is FavoriteLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (state is FavouriteLoaded) {
+            if (state is FavoriteLoaded) {
               return ListView.builder(
-                itemCount: state.favouriteList.length,
-                padding: const EdgeInsets.only(bottom: 10, top: 10),
+                itemCount: state.favoriteList.length,
+                padding: const EdgeInsets.all(20),
                 itemBuilder: (BuildContext context, int index) {
-                  FavouriteModel favourite = state.favouriteList[index];
+                  FavoriteModel favourite = state.favoriteList[index];
 
                   return Card(
-                    elevation: 2,
+                    elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    margin:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 20),
                     child: ListTile(
-                      title: Text(
-                        favourite.name,
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text(
+                          favourite.name,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FavoriteDetail(
+                                      favorite: favourite,
+                                    )));
+                      },
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       subtitle: Column(
@@ -50,19 +66,16 @@ class FavouriteScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(favourite.lastUpdated),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                favourite.country,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          Text(
+                            "${favourite.region}, ${favourite.country}",
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "Updated: ${fullDateAndTime(favourite.lastUpdated)}"),
+                          const SizedBox(
+                            width: 10,
                           ),
                           const SizedBox(
                             height: 10,
@@ -77,14 +90,10 @@ class FavouriteScreen extends StatelessWidget {
                             child: PopupMenuButton(
                                 padding: const EdgeInsets.all(0),
                                 splashRadius: 20,
-                                onSelected: (value) {
+                                onSelected: (value) async {
                                   if (value == 1) {
-                                    //  handleDeleteConfirm("this order", () async {
-                                    //     await controller.handleDeleteRequest(
-                                    //       "$draftOrderRoute/${order["id"]}",
-                                    //     );
-                                    //     controller.pullToRefresh();
-                                    //   });
+                                    favController.hanldeDeleteFav(
+                                        context, favourite.id!);
                                   }
                                 },
                                 icon: Icon(
@@ -96,8 +105,15 @@ class FavouriteScreen extends StatelessWidget {
                                         value: 1,
                                         child: Row(
                                           children: const [
+                                            Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
                                             Text(
-                                              "Delete",
+                                              "Remove",
                                               style: TextStyle(fontSize: 15),
                                             )
                                           ],
@@ -112,7 +128,7 @@ class FavouriteScreen extends StatelessWidget {
                 },
               );
             }
-            if (state is FavouriteError) {
+            if (state is FavoriteError) {
               return ListView(
                 children: const <Widget>[
                   Text(

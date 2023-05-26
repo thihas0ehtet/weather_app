@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'favourite_model.dart';
+part of 'favorite_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FavouriteModel _$FavouriteModelFromJson(Map<String, dynamic> json) =>
-    FavouriteModel(
+FavoriteModel _$FavoriteModelFromJson(Map<String, dynamic> json) =>
+    FavoriteModel(
       id: json['id'] as int?,
       name: json['name'] as String,
       region: json['region'] as String,
@@ -24,7 +24,7 @@ FavouriteModel _$FavouriteModelFromJson(Map<String, dynamic> json) =>
           jsonDecode(json["forecastList"]).map((x) => x)).toList(),
     );
 
-Map<String, dynamic> _$FavouriteModelToJson(FavouriteModel instance) =>
+Map<String, dynamic> _$FavoriteModelToJson(FavoriteModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
