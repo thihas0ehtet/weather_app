@@ -30,6 +30,12 @@ class FavoriteScreen extends StatelessWidget {
               );
             }
             if (state is FavoriteLoaded) {
+              if (state.favoriteList.isEmpty) {
+                return const Center(
+                  child: Text("No Data"),
+                );
+              }
+
               return ListView.builder(
                 itemCount: state.favoriteList.length,
                 padding: const EdgeInsets.all(20),
@@ -42,6 +48,15 @@ class FavoriteScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5)),
                     margin: const EdgeInsets.only(bottom: 20),
                     child: ListTile(
+                      leading: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.location_city,
+                            color: Colors.blue,
+                          ),
+                        ],
+                      ),
                       title: Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(

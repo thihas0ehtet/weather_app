@@ -44,6 +44,9 @@ class FavoriteDetail extends StatelessWidget {
               Text(
                 "Updated: ${fullDateAndTime(favorite.lastUpdated)}",
               ),
+              const SizedBox(
+                height: 25,
+              ),
               CustomImage(
                 imageUrl: favorite.conditionIconUrl,
                 width: 60,

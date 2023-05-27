@@ -48,6 +48,7 @@ class DatabaseService {
         $id ,
         title TEXT,
         body TEXT,
+        date TEXT,
         isRead BOOLEAN,
         $createdAt
       )

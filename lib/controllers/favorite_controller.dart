@@ -14,7 +14,7 @@ class FavoriteController {
   getData() async {
     final db = await DatabaseService.initDB();
     List<Map<String, dynamic>> list = await db.query(tableName);
-    return list.map((data) => FavoriteModel.fromJson(data)).toList();
+    return list.reversed.map((data) => FavoriteModel.fromJson(data)).toList();
   }
 
   Future<void> handleAction(String method,
@@ -41,7 +41,18 @@ class FavoriteController {
       BuildContext context, WeatherModel weatherModel) async {
     final favBloc = BlocProvider.of<FavoriteBloc>(context);
 
+    final favLists = await getData();
+    bool isNew = true;
+    late int favId;
+    for (var fav in favLists) {
+      if (fav.name == weatherModel.city.name) {
+        isNew = false;
+        favId = fav.id;
+      }
+    }
+
     FavoriteModel favorite = FavoriteModel(
+      id: isNew ? null : favId,
       name: weatherModel.city.name,
       region: weatherModel.city.region,
       country: weatherModel.city.country,
@@ -64,8 +75,15 @@ class FavoriteController {
           .toList(),
     );
 
-    showSnackBar(context, 'Successfully saved as favorite!');
-    await handleAction(ConstantUtils.postMethod, favorite: favorite);
+    if (isNew) {
+      await handleAction(ConstantUtils.postMethod, favorite: favorite);
+      showSnackBar(context, 'Successfully saved as favorite!');
+    } else {
+      await handleAction(ConstantUtils.putMethod,
+          favorite: favorite, id: favId);
+      showSnackBar(context, 'Successfully updated favorite city!');
+    }
+
     favBloc.add(const FetchFavourite());
   }
 

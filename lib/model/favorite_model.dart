@@ -58,3 +58,6 @@ class FavoriteModel extends Equatable {
         forecastList
       ];
 }
+
+//  forecastList: List<Map<String, dynamic>>.from(jsonDecode(json["forecastList"]).map((x) => x)),
+//   "forecastList": jsonEncode(instance.forecastList),

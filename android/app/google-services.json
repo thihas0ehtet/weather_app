@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "998810415127",
+    "project_id": "push-noti-d87d9",
+    "storage_bucket": "push-noti-d87d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998810415127:android:ede469075b9ad0b8812c52",
+        "android_client_info": {
+          "package_name": "com.easyapproach.push_notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqIkABV74NUVT_uFUr9ujnY_Ta-_K5Nmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998810415127:android:590bd026a5039cd9812c52",
+        "android_client_info": {
+          "package_name": "com.example.firebase_messaging_tutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqIkABV74NUVT_uFUr9ujnY_Ta-_K5Nmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998810415127:android:0d1d43702c74dec4812c52",
+        "android_client_info": {
+          "package_name": "com.example.push_noti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqIkABV74NUVT_uFUr9ujnY_Ta-_K5Nmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998810415127:android:2fffd030f3a231ce812c52",
+        "android_client_info": {
+          "package_name": "com.weatherapp.weatherapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqIkABV74NUVT_uFUr9ujnY_Ta-_K5Nmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998810415127-rreovn1idr9r0hb8a5jkot6cdrvovjd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

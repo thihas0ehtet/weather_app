@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -23,4 +25,13 @@ showSnackBar(BuildContext context, String text, {Color color = Colors.green}) {
   );
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+Future<bool> hasNetwork() async {
+  try {
+    final result = await InternetAddress.lookup('example.com');
+    return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+  } on SocketException catch (_) {
+    return false;
+  }
 }
