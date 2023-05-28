@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weatherapp/bloc/weather/bloc.dart';
 import 'package:weatherapp/controllers/favorite_controller.dart';
-import 'package:weatherapp/controllers/noti_controller.dart';
 import 'package:weatherapp/screen/home/forecast_view.dart';
 import 'package:weatherapp/screen/home/noti_button.dart';
 import 'package:weatherapp/screen/home/search.dart';
@@ -187,16 +186,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 15,
                                   ),
                                   ElevatedButton.icon(
-                                      onPressed: () {
-                                        final NotiController notiController =
-                                            NotiController();
-
-                                        notiController.handleSaveNoti(
-                                            context, "sdfsdf", "sdfsd");
-                                      },
-                                      // onPressed: () =>
-                                      //     favController.handleSaveFav(
-                                      //         context, state.weatherModel),
+                                      onPressed: () =>
+                                          favController.handleSaveFav(
+                                              context, state.weatherModel),
                                       icon: const Icon(Icons.favorite),
                                       label: const Text("Save as favourite"))
                                 ],

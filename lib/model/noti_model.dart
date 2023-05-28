@@ -9,14 +9,13 @@ class NotiModel extends Equatable {
   final String title;
   final String body;
   final String date;
-  final String? createAt;
 
-  const NotiModel(
-      {this.id,
-      required this.title,
-      required this.body,
-      required this.date,
-      this.createAt});
+  const NotiModel({
+    this.id,
+    required this.title,
+    required this.body,
+    required this.date,
+  });
 
   factory NotiModel.fromJson(Map<String, dynamic> json) =>
       _$NotiModelFromJson(json);
@@ -24,5 +23,5 @@ class NotiModel extends Equatable {
   Map<String, dynamic> toJson() => _$NotiModelToJson(this);
 
   @override
-  List<Object> get props => [id!, title, body, createAt!];
+  List<Object> get props => [id!, title, body, date];
 }

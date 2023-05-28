@@ -57,6 +57,7 @@ class FavoriteScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      visualDensity: VisualDensity.comfortable,
                       title: Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(

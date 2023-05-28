@@ -13,7 +13,7 @@ class NotiButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final NotiBloc notiBloc = BlocProvider.of<NotiBloc>(context);
     final NotiCountCubit notiCountCubit = context.watch();
-    //  final NotiCountCubit notiCountCubit = context.read<NotiCountCubit>();
+
     notiCountCubit.changeNotiCount();
 
     goNotiPage() {

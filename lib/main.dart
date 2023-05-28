@@ -28,7 +28,29 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   Bloc.observer = SimpleBlocObserver();
   await DatabaseService.initDB();
-  runApp(const MyApp());
+  runApp(Provider<ApiService>(
+      create: (context) => ApiService.create(),
+      child: Consumer<ApiService>(
+        builder: (context, apiService, child) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider<WeatherBloc>(
+                create: (context) => WeatherBloc(apiService: apiService),
+              ),
+              BlocProvider<FavoriteBloc>(
+                create: (context) => FavoriteBloc(),
+              ),
+              BlocProvider<NotiBloc>(
+                create: (context) => NotiBloc(),
+              ),
+              BlocProvider<NotiCountCubit>(
+                create: (context) => NotiCountCubit(),
+              ),
+            ],
+            child: const MyApp(),
+          );
+        },
+      )));
 }
 
 class MyApp extends StatefulWidget {
@@ -69,38 +91,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Provider<ApiService>(
-        create: (context) => ApiService.create(),
-        child: Consumer<ApiService>(
-          builder: (context, apiService, child) {
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider<WeatherBloc>(
-                  create: (context) => WeatherBloc(apiService: apiService),
-                ),
-                BlocProvider<FavoriteBloc>(
-                  create: (context) => FavoriteBloc(),
-                ),
-                BlocProvider<NotiBloc>(
-                  create: (context) => NotiBloc(),
-                ),
-                BlocProvider<NotiCountCubit>(
-                  create: (context) => NotiCountCubit(),
-                ),
-              ],
-              child: MaterialApp(
-                theme: ThemeData(
-                  primarySwatch: ConstantUtils.primaryColor,
-                ),
-                title: "Weather App",
-                home: const BottomBar(),
-                //           routes: {
-                //   "red": (_) => f(),
-                //   "green": (_) => GreenPage(),
-                // },
-              ),
-            );
-          },
-        ));
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: ConstantUtils.primaryColor,
+      ),
+      title: "Weather App",
+      home: const BottomBar(),
+    );
   }
 }

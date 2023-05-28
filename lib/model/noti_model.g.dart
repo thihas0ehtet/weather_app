@@ -11,7 +11,6 @@ NotiModel _$NotiModelFromJson(Map<String, dynamic> json) => NotiModel(
       title: json['title'] as String,
       body: json['body'] as String,
       date: json['date'] as String,
-      createAt: json['createAt'] as String?,
     );
 
 Map<String, dynamic> _$NotiModelToJson(NotiModel instance) => <String, dynamic>{
@@ -19,5 +18,4 @@ Map<String, dynamic> _$NotiModelToJson(NotiModel instance) => <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
       'date': instance.date,
-      'createAt': instance.createAt,
     };

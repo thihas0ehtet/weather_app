@@ -1,16 +1,33 @@
 # weatherapp
 
-Weather App
+Weather Forecast App
 
-## Getting Started
+> Weather Forecast App using Flutter
 
-This project is a starting point for a Flutter application.
+## Demo APK
 
-A few resources to get you started if this is your first Flutter project:
+<a href="https://drive.google.com/file/d/1m17qTUVsbghGiTJkdQecHc95HW4U5dHa/view?usp=share_link" target="_blank">Download link</a>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Screens
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](Screen1.jpeg) ![](Screen2.jpeg) ![](Screen3.jpeg)
+
+## 👨🏽‍💻 Tech Stack
+
+| What?             | How?           |
+| :---------------- | :------------- |
+| State management  | Bloc / Cubit   |
+| Api service       | Dio / Retrofit |
+| Offline database  | Sqlite         |
+| Push notification | Firebase       |
+
+## ☑️ Features
+
+- [ ] search weather information for a city
+- [ ] a 3-day weather forecast
+- [ ] favorite cities for offline access
+- [ ] push notifications
+
+## ✍️ Api
+
+- Weather Api: <a href="https://www.weatherapi.com" target="_blank">weatherapi.com</a>

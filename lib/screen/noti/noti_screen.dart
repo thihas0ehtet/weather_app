@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp/bloc/noti/noti_event.dart';
 import 'package:weatherapp/bloc/noti/noti_state.dart';
+import 'package:weatherapp/controllers/favorite_controller.dart';
+import 'package:weatherapp/controllers/noti_controller.dart';
 import 'package:weatherapp/model/noti_model.dart';
 import 'package:weatherapp/screen/noti/detail.dart';
 
@@ -14,6 +16,7 @@ class NotiScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final notiBloc = BlocProvider.of<NotiBloc>(context);
     notiBloc.add(const FetchNoti());
+    final NotiController notiController = NotiController();
     return Scaffold(
         appBar: AppBar(title: const Text("Notifications")),
         body: BlocBuilder<NotiBloc, NotiState>(
@@ -86,12 +89,11 @@ class NotiScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-
-                          // Text(
-                          //   noti.createAt ?? "",
-                          //   maxLines: 2,
-                          //   overflow: TextOverflow.ellipsis,
-                          // ),
+                          Text(
+                            noti.date,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ],
                       ),
                     ),

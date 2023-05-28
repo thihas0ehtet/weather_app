@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weatherapp/bloc/noti/noti_event.dart';
+import 'package:weatherapp/bloc/noti/noti_count_cubit.dart';
 import 'package:weatherapp/model/noti_model.dart';
 import 'package:weatherapp/services/db_services.dart';
 import 'package:weatherapp/utils/constants.dart';
 import 'package:weatherapp/utils/utils.dart';
-
-import '../bloc/noti/noti_bloc.dart';
 
 class NotiController {
   String tableName = Tables.noti;
@@ -38,17 +36,13 @@ class NotiController {
 
   Future<void> handleSaveNoti(
       BuildContext context, String title, String body) async {
+    final NotiCountCubit notiCountCubit = context.read<NotiCountCubit>();
+
     NotiModel noti = NotiModel(
         title: title,
         body: body,
         date: fullDateAndTime(DateTime.now().toString()));
-
     await handleAction(ConstantUtils.postMethod, noti: noti);
-  }
-
-  Future<void> hanldeDeleteNoti(BuildContext context, int id) async {
-    final notiBloc = BlocProvider.of<NotiBloc>(context);
-    await handleAction(ConstantUtils.deleteMethod, id: id);
-    notiBloc.add(const FetchNoti());
+    notiCountCubit.changeNotiCount();
   }
 }
