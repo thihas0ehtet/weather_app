@@ -10,7 +10,11 @@ Weather Forecast App
 
 ## Screens
 
-![](Screen1.jpg) ![](Screen2.jpg) ![](Screen3.jpg)
+<p>
+<img src='Screen1.jpg' width='200' height='400'>
+<img src='Screen2.jpg' width='200' height='400'>
+<img src='Screen3.jpg' width='200' height='400'>
+</p>
 
 ## 👨🏽‍💻 Tech Stack
 
