@@ -10,9 +10,7 @@ Weather Forecast App
 
 ## Screens
 
-![](Screen1.jpeg)
-![](Screen2.jpeg)
-![](Screen3.jpeg)
+![](Screen1.jpg) ![](Screen2.jpg) ![](Screen3.jpg)
 
 ## 👨🏽‍💻 Tech Stack
 
