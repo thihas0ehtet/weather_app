@@ -1,6 +1,4 @@
-# weatherapp
-
-Weather Forecast App
+# Weather Forecast App
 
 > Weather Forecast App using Flutter
 
