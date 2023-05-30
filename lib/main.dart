@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:weatherapp/bloc/favorite/favorite_bloc.dart';
-import 'package:weatherapp/bloc/noti/noti_count_cubit.dart';
 import 'package:weatherapp/bloc/weather/bloc.dart';
 import 'package:weatherapp/bloc/simple_bloc_observer.dart';
 import 'package:weatherapp/controllers/noti_controller.dart';
-import 'package:weatherapp/screen/noti/noti_screen.dart';
 import 'package:weatherapp/services/api_service.dart';
 import 'package:weatherapp/services/db_services.dart';
 import 'package:weatherapp/services/local_notification_service.dart';
@@ -18,8 +16,6 @@ import 'package:weatherapp/widgets/bottom_bar.dart';
 import 'bloc/noti/noti_bloc.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
-  debugPrint(message.data.toString());
-  debugPrint(message.notification!.title);
   final NotiController notiController = NotiController();
   notiController.handleSaveNoti(
       message.notification!.title ?? "", message.notification!.body ?? "");
@@ -47,9 +43,6 @@ Future<void> main() async {
               BlocProvider<NotiBloc>(
                 create: (context) => NotiBloc(),
               ),
-              BlocProvider<NotiCountCubit>(
-                create: (context) => NotiCountCubit(),
-              ),
             ],
             child: const MyApp(),
           );
@@ -65,13 +58,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late FirebaseMessaging messaging;
+  final FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   @override
   void initState() {
     LocalNotificationService.initialize(context);
 
-    messaging = FirebaseMessaging.instance;
+    messaging.requestPermission();
     messaging.getToken().then((value) {
       debugPrint(value);
     });
@@ -86,27 +79,10 @@ class _MyAppState extends State<MyApp> {
       notiController.handleSaveNoti(
         event.notification!.title ?? "",
         event.notification!.body ?? "",
-        context: context,
       );
     });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const NotiScreen()));
-    });
-
     super.initState();
-  }
-
-  Future<void> backgroundHandler(RemoteMessage message) async {
-    debugPrint(message.data.toString());
-    debugPrint(message.notification!.title);
-    final NotiController notiController = NotiController();
-    notiController.handleSaveNoti(
-      message.notification!.title ?? "",
-      message.notification!.body ?? "",
-      context: context,
-    );
   }
 
   @override

@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weatherapp/bloc/noti/noti_count_cubit.dart';
 import 'package:weatherapp/model/noti_model.dart';
 import 'package:weatherapp/services/db_services.dart';
 import 'package:weatherapp/utils/constants.dart';
@@ -36,14 +33,8 @@ class NotiController {
 
   Future<void> handleSaveNoti(
     String title,
-    String body, {
-    BuildContext? context,
-  }) async {
-    if (context != null) {
-      final NotiCountCubit notiCountCubit = context.read<NotiCountCubit>();
-      notiCountCubit.changeNotiCount();
-    }
-
+    String body,
+  ) async {
     NotiModel noti = NotiModel(
         title: title,
         body: body,

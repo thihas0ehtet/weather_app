@@ -4,7 +4,7 @@
 
 ## Demo APK
 
-<a href="https://drive.google.com/file/d/1m17qTUVsbghGiTJkdQecHc95HW4U5dHa/view?usp=share_link" target="_blank">Download link</a>
+<a href="https://drive.google.com/file/d/1TCRzRvyFKtrhT5K7x-ouVdAk_mOpODQD/view?usp=share_link" target="_blank">Download link</a>
 
 ## Screens
 
