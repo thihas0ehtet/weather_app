@@ -35,14 +35,19 @@ class NotiController {
   }
 
   Future<void> handleSaveNoti(
-      BuildContext context, String title, String body) async {
-    final NotiCountCubit notiCountCubit = context.read<NotiCountCubit>();
+    String title,
+    String body, {
+    BuildContext? context,
+  }) async {
+    if (context != null) {
+      final NotiCountCubit notiCountCubit = context.read<NotiCountCubit>();
+      notiCountCubit.changeNotiCount();
+    }
 
     NotiModel noti = NotiModel(
         title: title,
         body: body,
         date: fullDateAndTime(DateTime.now().toString()));
     await handleAction(ConstantUtils.postMethod, noti: noti);
-    notiCountCubit.changeNotiCount();
   }
 }

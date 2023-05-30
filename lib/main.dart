@@ -20,6 +20,9 @@ import 'bloc/noti/noti_bloc.dart';
 Future<void> backgroundHandler(RemoteMessage message) async {
   debugPrint(message.data.toString());
   debugPrint(message.notification!.title);
+  final NotiController notiController = NotiController();
+  notiController.handleSaveNoti(
+      message.notification!.title ?? "", message.notification!.body ?? "");
 }
 
 Future<void> main() async {
@@ -28,6 +31,7 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   Bloc.observer = SimpleBlocObserver();
   await DatabaseService.initDB();
+
   runApp(Provider<ApiService>(
       create: (context) => ApiService.create(),
       child: Consumer<ApiService>(
@@ -72,13 +76,18 @@ class _MyAppState extends State<MyApp> {
       debugPrint(value);
     });
 
+    messaging.subscribeToTopic("all");
+
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
       final NotiController notiController = NotiController();
 
       LocalNotificationService.display(event);
 
-      notiController.handleSaveNoti(context, event.notification!.title ?? "",
-          event.notification!.body ?? "");
+      notiController.handleSaveNoti(
+        event.notification!.title ?? "",
+        event.notification!.body ?? "",
+        context: context,
+      );
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
@@ -87,6 +96,17 @@ class _MyAppState extends State<MyApp> {
     });
 
     super.initState();
+  }
+
+  Future<void> backgroundHandler(RemoteMessage message) async {
+    debugPrint(message.data.toString());
+    debugPrint(message.notification!.title);
+    final NotiController notiController = NotiController();
+    notiController.handleSaveNoti(
+      message.notification!.title ?? "",
+      message.notification!.body ?? "",
+      context: context,
+    );
   }
 
   @override
